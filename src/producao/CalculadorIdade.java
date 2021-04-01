@@ -147,7 +147,11 @@ public class CalculadorIdade extends javax.swing.JFrame {
         int anoAtual = cal.getWeekYear();
         int idade = anoAtual -nacimento;
         
-        lblResultado.setText(Integer.toString(idade));
+        if(nacimento > anoAtual){
+             lblResultado.setText("Ano invalido");
+        } else {
+            lblResultado.setText(Integer.toString(idade));
+        }
     }//GEN-LAST:event_BtnCalcularActionPerformed
 
     private void lblAnoAtualAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblAnoAtualAncestorAdded
