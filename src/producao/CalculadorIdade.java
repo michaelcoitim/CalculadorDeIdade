@@ -5,6 +5,7 @@
  */
 package producao;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -57,7 +58,7 @@ public class CalculadorIdade extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user.png"))); // NOI18N
 
-        vAnoNacimento.setModel(new javax.swing.SpinnerNumberModel(15000, 15000, null, 1));
+        vAnoNacimento.setModel(new javax.swing.SpinnerNumberModel(1500, 1500, null, 1));
 
         jLabel4.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         jLabel4.setText("A sua idade  no fim de ano será");
@@ -94,16 +95,19 @@ public class CalculadorIdade extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(vAnoNacimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblAnoAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                .addComponent(lblAnoAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(BtnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addComponent(BtnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(vAnoNacimento, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 75, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47))))
@@ -124,7 +128,7 @@ public class CalculadorIdade extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vAnoNacimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vAnoNacimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)))
@@ -138,12 +142,19 @@ public class CalculadorIdade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCalcularActionPerformed
+        Calendar cal =  Calendar.getInstance();
+        int nacimento = Integer.parseInt(vAnoNacimento.getValue().toString());
+        int anoAtual = cal.getWeekYear();
+        int idade = anoAtual -nacimento;
         
+        lblResultado.setText(Integer.toString(idade));
     }//GEN-LAST:event_BtnCalcularActionPerformed
 
     private void lblAnoAtualAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblAnoAtualAncestorAdded
-       Date relogio = new Date();
-       lblAnoAtual.setText(relogio.toString());
+       Calendar cal =  Calendar.getInstance();
+       lblAnoAtual.setText(Integer.toString(cal.getWeekYear()));
+       
+      
        
             
     }//GEN-LAST:event_lblAnoAtualAncestorAdded
